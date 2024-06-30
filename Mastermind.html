@@ -19,6 +19,21 @@
             <input type="text" id="guessInput" maxlength="5">
             <button onclick="checkGuess()">Guess</button>
         </div>
+        <div id="help">
+            <button onclick="showHelp()">Help</button>
+            <div id="helpInfo" style="display: none;">
+                <p><strong>Letters:</strong> A, B, C, D, E</p>
+                <p><strong>Feedback:</strong></p>
+                <ul>
+                    <li><strong>o</strong>: Correct color and position</li>
+                    <li><strong>x</strong>: Correct color but wrong position</li>
+                    <li><strong>-</strong>: Incorrect color</li>
+                </ul>
+            </div>
+        </div>
+        <div id="attemptsCount">
+            <p>Attempts: <span id="attemptCount">0</span></p>
+        </div>
     </div>
 
     <script src="js/script.js"></script>

@@ -1,6 +1,7 @@
 // Variables
 let secretCode = generateSecretCode(); // Generate random secret code
 let attempts = [];
+let attemptCount = 0;
 const maxAttempts = 10;
 
 // Function to generate a random secret code
@@ -29,6 +30,12 @@ function checkGuess() {
         guess: guessInput,
         feedback: generateFeedback(guessInput, secretCode)
     });
+
+    // Increase attempt count
+    attemptCount++;
+
+    // Update attempts count in the UI
+    document.getElementById('attemptCount').textContent = attemptCount;
 
     // Display attempts
     displayAttempts();
@@ -110,9 +117,23 @@ function displayAttempts() {
     }
 }
 
+// Function to show or hide help information
+function showHelp() {
+    let helpInfo = document.getElementById('helpInfo');
+    if (helpInfo.style.display === 'none') {
+        helpInfo.style.display = 'block';
+    } else {
+        helpInfo.style.display = 'none';
+    }
+}
+
 // Function to reset the game
 function resetGame() {
     secretCode = generateSecretCode();
     attempts = [];
+    attemptCount = 0;
     displayAttempts();
+    document.getElementById('attemptCount').textContent = attemptCount;
+    document.getElementById('guessInput').value = '';
+    document.getElementById('helpInfo').style.display = 'none'; // Hide help info on reset
 }
