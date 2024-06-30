@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastermind</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1>Mastermind</h1>
+    
+    <div id="game">
+        <div id="code"></div>
+        <div id="attempts">
+            <!-- Display attempts here -->
+        </div>
+        <div id="guess">
+            <!-- Input form for guessing -->
+            <input type="text" id="guessInput" maxlength="5">
+            <button onclick="checkGuess()">Guess</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

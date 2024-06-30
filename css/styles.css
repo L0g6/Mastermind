@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+#game {
+    margin: 20px auto;
+    max-width: 600px;
+    border: 2px solid #ccc;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+#code {
+    margin-bottom: 20px;
+}
+
+#attempts {
+    margin-bottom: 20px;
+}
+
+#guess {
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    width: 100px;
+    padding: 5px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
