@@ -14,7 +14,7 @@ function generateSecretCode() {
     return code.join('');
 }
 
-// Function to check the guess
+// Function to check the guess and provide feedback
 function checkGuess() {
     let guessInput = document.getElementById('guessInput').value.toUpperCase();
 
@@ -30,6 +30,10 @@ function checkGuess() {
     // Display attempts
     displayAttempts();
 
+    // Generate feedback
+    let feedback = generateFeedback(guessInput, secretCode);
+    alert(`Feedback: ${feedback}`);
+
     // Check if guess is correct
     if (guessInput === secretCode) {
         alert('Congratulations! You guessed the secret code.');
@@ -42,6 +46,56 @@ function checkGuess() {
             alert('Incorrect guess. Keep trying!');
         }
     }
+}
+
+// Function to generate feedback based on the guess and secret code
+function generateFeedback(guess, code) {
+    let feedback = '';
+    let exactMatches = 0;
+    let colorMatches = 0;
+
+    // Check for exact matches (green pins)
+    for (let i = 0; i < 5; i++) {
+        if (guess[i] === code[i]) {
+            exactMatches++;
+        }
+    }
+
+    // Check for color matches (white pins)
+    let codeCounts = {};
+    let guessCounts = {};
+
+    for (let i = 0; i < 5; i++) {
+        let codeChar = code[i];
+        let guessChar = guess[i];
+
+        if (codeChar === guessChar) continue; // Skip exact matches
+
+        codeCounts[codeChar] = (codeCounts[codeChar] || 0) + 1;
+        guessCounts[guessChar] = (guessCounts[guessChar] || 0) + 1;
+    }
+
+    for (let char in guessCounts) {
+        if (codeCounts[char]) {
+            colorMatches += Math.min(codeCounts[char], guessCounts[char]);
+        }
+    }
+
+    // Construct feedback string
+    for (let i = 0; i < exactMatches; i++) {
+        feedback += 'o'; // Green pin for exact match
+    }
+
+    for (let i = 0; i < colorMatches; i++) {
+        feedback += 'x'; // White pin for color match
+    }
+
+    // Fill remaining with dashes
+    while (feedback.length < 5) {
+        feedback += '-';
+    }
+
+    return feedback;
 }
 
 // Function to display attempts
