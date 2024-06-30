@@ -25,14 +25,13 @@ function checkGuess() {
     }
 
     // Add guess to attempts array
-    attempts.push(guessInput);
+    attempts.push({
+        guess: guessInput,
+        feedback: generateFeedback(guessInput, secretCode)
+    });
 
     // Display attempts
     displayAttempts();
-
-    // Generate feedback
-    let feedback = generateFeedback(guessInput, secretCode);
-    alert(`Feedback: ${feedback}`);
 
     // Check if guess is correct
     if (guessInput === secretCode) {
@@ -42,10 +41,11 @@ function checkGuess() {
         if (attempts.length === maxAttempts) {
             alert(`Game over! The secret code was ${secretCode}.`);
             resetGame();
-        } else {
-            alert('Incorrect guess. Keep trying!');
         }
     }
+
+    // Clear input field
+    document.getElementById('guessInput').value = '';
 }
 
 // Function to generate feedback based on the guess and secret code
@@ -102,9 +102,10 @@ function generateFeedback(guess, code) {
 function displayAttempts() {
     let attemptsDiv = document.getElementById('attempts');
     attemptsDiv.innerHTML = '';
+
     for (let i = 0; i < attempts.length; i++) {
         let attemptDiv = document.createElement('div');
-        attemptDiv.textContent = attempts[i];
+        attemptDiv.textContent = `${attempts[i].guess} - Feedback: ${attempts[i].feedback}`;
         attemptsDiv.appendChild(attemptDiv);
     }
 }
